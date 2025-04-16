@@ -1,0 +1,106 @@
+body {
+    margin: 60px auto;
+    width: 70%;
+    font-family:"Myriad-pro-1", "Myriad-pro-2", Helvetica, Arial, sans-serif;
+
+}
+li {
+    font-size: 1em;
+    margin-bottom: 1em;
+
+}
+nav ul, footer ul {
+    padding: 0px;
+    list-style: none;
+    font-weight: bold;
+    font-size: 1em;
+}
+nav ul li, footer ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    color: #d5d5d5; /* Darker grey on hover */
+
+}
+nav {
+    border-top: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+    font-size: .8em;
+}
+
+.nav-active {
+      color: black; /* Change this to your desired default link color */
+    }
+
+p {
+  margin-bottom: 1.2em;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+a {
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #333; /* Darker grey on hover */
+
+}
+
+a:visited {
+  color: #333;
+}
+
+}
+h1 {
+    font-size: 3em;
+}
+
+footer {
+    border-top: 1px solid #d5d5d5;
+    font-size: .8em;
+}
+
+ul.posts { 
+    margin: 20px auto 40px; 
+    font-size: 1.5em;
+}
+
+ul.posts li {
+    list-style: none;
+}
+element.style {
+}
+/* Styles for the image container */
+.image-container {
+    display: flex;
+}
+
+/* Styles for each image within the container */
+.homepage-image {
+    width: 50%; /* Each image takes 50% of the container width */
+    height: auto;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    box-sizing: border-box; /* Include padding and border in the total width/height */
+}
+
+/* Resetting styles for the img tag */
+img {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below inline-block elements */
+    margin: 0 auto; /* Center the image horizontally within its container */
+}
+
+/* Add space between the images */
+.homepage-image + .homepage-image {
+    margin-left: 5px; /* Adjust the space as needed */
+}
