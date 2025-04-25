@@ -81,6 +81,9 @@ element.style {
 /* Styles for the image container */
 .image-container {
     display: flex;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    box-sizing: border-box; /* Include padding and border in the total width/height */
 }
 
 /* Styles for each image within the container */
