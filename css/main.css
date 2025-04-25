@@ -159,3 +159,21 @@ nav ul li .dropdown-content a:hover {
 nav ul li.dropdown:hover .dropdown-content {
     display: block;
 }
+
+.text-image-container {
+  display: flex;
+  align-items: center; /* vertically align image and text */
+  gap: 20px; /* space between image and text */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.text-image-container img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.text-content {
+  flex: 1; /* let text take the remaining space */
+}
