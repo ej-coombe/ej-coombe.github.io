@@ -140,6 +140,14 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Social media icons */
 
-.social-icon-alignment-center .sqs-svg-icon--list {
-    text-align: center;
+footer {
+  background-color: #FFF;
+  color: white;
+  padding: 15px;
+}
+
+.fa{
+    color: black;
+    font-size: 50px;
+
 }
