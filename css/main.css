@@ -2,7 +2,12 @@ body {
     margin: 60px auto;
     width: 70%;
     font-family:"Myriad-pro-1", "Myriad-pro-2", Helvetica, Arial, sans-serif;
-
+display: flex;                /* Flexbox for centering */
+  justify-content: center;      /* Horizontally center */
+  align-items: center;          /* Vertically center */
+  height: 100vh;                /* Full viewport height */
+  margin: 0;                    /* Remove default body margin */
+  text-align: center;           /* Center text (if any) */
 }
 li {
     font-size: 1em;
@@ -210,12 +215,13 @@ nav ul li.dropdown:hover .dropdown-content {
 #tracks {
   display: flex;
   flex-direction: column;
-  align-items: center;  /* Center the players horizontally */
-  gap: 20px;  /* Add some space between the players */
+  align-items: center;          /* Center the players horizontally */
+  gap: 20px;                    /* Add space between each player */
+  width: 100%;                  /* Ensure it uses full width */
 }
 
 .track iframe {
-  width: 300px;
-  height: 80px;
-  border: none;
+  width: 300px;                 /* Set width of the embed */
+  height: 80px;                 /* Set height of the embed */
+  border: none;                 /* Remove the iframe border */
 }
