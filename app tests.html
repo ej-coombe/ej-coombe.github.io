@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify Top Tracks (Past Week)</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #121212;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+    .track {
+      display: flex;
+      align-items: center;
+      margin: 1rem 0;
+      background: #1e1e1e;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .track img {
+      width: 64px;
+      height: 64px;
+      margin-right: 1rem;
+      border-radius: 4px;
+    }
+    .track-info {
+      text-align: left;
+    }
+    a {
+      color: #1db954;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Top Spotify Tracks (Last 4 Weeks)</h1>
+  <button onclick="login()">Log in with Spotify</button>
+  <div id="tracks"></div>
+
+  <script>
+    const clientId = "5d0cae9499c34466a47328263c3196b8";
+    const redirectUri = window.location.origin + window.location.pathname;
+    const scopes = "user-top-read";
+
+    function login() {
+      const authUrl =
+        `https://accounts.spotify.com/authorize?response_type=token&client_id=${clientId}` +
+        `&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+      window.location.href = authUrl;
+    }
+
+    function getTokenFromUrl() {
+      const hash = window.location.hash.substring(1);
+      const params = new URLSearchParams(hash);
+      return params.get("access_token");
+    }
+
+    async function fetchTopTracks(token) {
+      const res = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=short_term", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await res.json();
+      displayTracks(data.items);
+    }
+
+    function displayTracks(tracks) {
+      const container = document.getElementById("tracks");
+      container.innerHTML = "";
+      tracks.forEach(track => {
+        container.innerHTML += `
+          <div class="track">
+            <img src="${track.album.images[0].url}" alt="${track.name}" />
+            <div class="track-info">
+              <strong>${track.name}</strong><br />
+              ${track.artists.map(a => a.name).join(", ")}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    const token = getTokenFromUrl();
+    if (token) {
+      window.history.pushState({}, document.title, redirectUri); // clean URL
+      fetchTopTracks(token);
+    }
+  </script>
+</body>
+</html>
