@@ -145,14 +145,15 @@
     }
 
     async function handleRedirect() {
-      const code = new URLSearchParams(window.location.search).get("code");
-      if (code) {
-        const token = await getAccessToken(code);
-        window.history.replaceState({}, document.title, redirectUri); // clean URL
-        localStorage.setItem("access_token", token);
-        fetchTopTracks(token, selectedTimeRange);
-      }
-    }
+  const code = new URLSearchParams(window.location.search).get("code");
+  if (code) {
+    // Use the authorization code to request the access token
+    const token = await getAccessToken(code);
+    window.history.replaceState({}, document.title, redirectUri); // Clean up URL after successful login
+    fetchData(token, selectedTimeRange, selectedDataType);  // Fetch data based on the access token
+  }
+}
+
 
     handleRedirect();
   </script>
