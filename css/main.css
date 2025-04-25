@@ -2,12 +2,6 @@ body {
     margin: 60px auto;
     width: 70%;
     font-family:"Myriad-pro-1", "Myriad-pro-2", Helvetica, Arial, sans-serif;
-display: flex;                /* Flexbox for centering */
-  justify-content: center;      /* Horizontally center */
-  align-items: center;          /* Vertically center */
-  height: 100vh;                /* Full viewport height */
-  margin: 0;                    /* Remove default body margin */
-  text-align: center;           /* Center text (if any) */
 }
 li {
     font-size: 1em;
