@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spotify Top Tracks & Albums</title>
+  <title>Spotify Top Tracks (Selectable Date Range)</title>
   <style>
     body {
       font-family: sans-serif;
@@ -17,25 +17,11 @@
       text-align: center;
       flex-direction: column;
     }
-    #tracks, #albums {
+    #tracks {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 20px;
-    }
-    .track, .album {
-      display: flex;
-      align-items: center;
-      background: #1e1e1e;
-      padding: 1rem;
-      border-radius: 8px;
-      width: 300px;
-    }
-    .track img, .album img {
-      width: 64px;
-      height: 64px;
-      margin-right: 1rem;
-      border-radius: 4px;
     }
     .track iframe {
       width: 300px;
@@ -62,31 +48,20 @@
   </style>
 </head>
 <body>
-  <h1>Your Top Spotify Tracks & Albums</h1>
+  <h1>Your Top Spotify Tracks</h1>
   <button onclick="loginWithSpotify()">Log in with Spotify</button>
-
-  <!-- Dropdown for Selecting Time Range -->
-  <select id="dateRange" onchange="updateData()">
+  <select id="dateRange" onchange="updateDateRange()">
     <option value="short_term">Last 4 Weeks</option>
     <option value="medium_term">Last 6 Months</option>
     <option value="long_term">All Time</option>
   </select>
-
-  <!-- Dropdown for Selecting Tracks or Albums -->
-  <select id="dataType" onchange="updateData()">
-    <option value="tracks">Top Tracks</option>
-    <option value="albums">Top Albums</option>
-  </select>
-
   <div id="tracks"></div>
-  <div id="albums"></div>
 
   <script>
     const clientId = "5d0cae9499c34466a47328263c3196b8";
     const redirectUri = window.location.origin + window.location.pathname;
     const scopes = "user-top-read";
     let selectedTimeRange = 'short_term';  // Default time range (Last 4 Weeks)
-    let selectedDataType = 'tracks';      // Default data type (Top Tracks)
 
     async function generateCodeVerifier() {
       const array = new Uint8Array(64);
@@ -140,25 +115,14 @@
       return data.access_token;
     }
 
-    async function fetchData(token, timeRange, dataType) {
-      let url = '';
-      if (dataType === 'tracks') {
-        url = `https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=${timeRange}`;
-      } else if (dataType === 'albums') {
-        url = `https://api.spotify.com/v1/me/top/albums?limit=10&time_range=${timeRange}`;
-      }
-
-      const res = await fetch(url, {
+    async function fetchTopTracks(token, timeRange) {
+      const res = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=${timeRange}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       const data = await res.json();
-      if (dataType === 'tracks') {
-        displayTracks(data.items);
-      } else if (dataType === 'albums') {
-        displayAlbums(data.items);
-      }
+      displayTracks(data.items);
     }
 
     function displayTracks(tracks) {
@@ -173,28 +137,10 @@
       });
     }
 
-    function displayAlbums(albums) {
-      const container = document.getElementById("albums");
-      container.innerHTML = "";
-      albums.forEach(album => {
-        container.innerHTML += `
-          <div class="album">
-            <img src="${album.images[0].url}" alt="${album.name}" />
-            <div>
-              <strong>${album.name}</strong><br />
-              ${album.artists.map(a => a.name).join(", ")}
-            </div>
-          </div>
-        `;
-      });
-    }
-
-    function updateData() {
+    function updateDateRange() {
       selectedTimeRange = document.getElementById("dateRange").value;
-      selectedDataType = document.getElementById("dataType").value;
-
       if (localStorage.getItem("access_token")) {
-        fetchData(localStorage.getItem("access_token"), selectedTimeRange, selectedDataType);
+        fetchTopTracks(localStorage.getItem("access_token"), selectedTimeRange);
       }
     }
 
@@ -204,7 +150,7 @@
         const token = await getAccessToken(code);
         window.history.replaceState({}, document.title, redirectUri); // clean URL
         localStorage.setItem("access_token", token);
-        fetchData(token, selectedTimeRange, selectedDataType);
+        fetchTopTracks(token, selectedTimeRange);
       }
     }
 
