@@ -207,14 +207,6 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Style for embed players */
 
-body {
-  font-family: sans-serif;
-  background: #121212;
-  color: #fff;
-  padding: 2rem;
-  text-align: center;
-}
-
 #tracks {
   display: flex;
   flex-direction: column;
