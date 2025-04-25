@@ -78,7 +78,7 @@
     async function loginWithSpotify() {
       const codeVerifier = await generateCodeVerifier();
       const codeChallenge = await generateCodeChallenge(codeVerifier);
-      localStorage.setItem("code_verifier", codeVerifier);
+localStorage.setItem('access_token', token);
 
       const args = new URLSearchParams({
         response_type: "code",
