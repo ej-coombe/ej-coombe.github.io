@@ -167,6 +167,7 @@ nav ul li.dropdown:hover .dropdown-content {
   max-width: 800px;
   margin: 0 auto;
   flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
 .text-image-container img {
