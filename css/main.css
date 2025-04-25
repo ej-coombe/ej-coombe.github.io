@@ -163,7 +163,7 @@ nav ul li.dropdown:hover .dropdown-content {
 .text-image-container {
   display: flex;
   align-items: center;
-  gap: 80px;
+  gap: 60px;
   max-width: 800px;
   margin: 0 auto 60px;
   flex-wrap: wrap;
