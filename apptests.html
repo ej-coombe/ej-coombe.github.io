@@ -117,12 +117,7 @@ function displayTracks(tracks) {
   tracks.forEach(track => {
     container.innerHTML += `
       <div class="track">
-        <img src="${track.album.images[0].url}" alt="${track.name}" />
-        <div class="track-info">
-          <strong>${track.name}</strong><br />
-          ${track.artists.map(a => a.name).join(", ")}<br />
-          <iframe src="https://open.spotify.com/embed/track/${track.id}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </div>
+        <iframe src="https://open.spotify.com/embed/track/${track.id}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
       </div>
     `;
   });
