@@ -106,6 +106,13 @@ img {
     margin-left: 5px; /* Adjust the space as needed */
 }
 
+
+/* Float right work page images */
+.work-imgage + .work-imgage {
+  float: right;
+}
+
+
 /* Dropdown navigation styles */
 nav ul li.dropdown {
     position: relative;
