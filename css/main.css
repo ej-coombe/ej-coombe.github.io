@@ -190,3 +190,17 @@ nav ul li.dropdown:hover .dropdown-content {
     width: 100%; /* make image full width on small screens */
   }
 }
+
+/* Style for the banner container */
+.banner {
+  width: 100%; /* Full width of the screen */
+  height: 300px; /* Set a fixed height for the banner */
+  overflow: hidden; /* Hide any content that overflows the container */
+}
+
+/* Style for the image */
+.banner img {
+  width: 100%; /* Make the image stretch to full width */
+  height: 100%; /* Make the image cover the full height */
+  object-fit: cover; /* Ensure the image scales without distortion, cropping if necessary */
+}
