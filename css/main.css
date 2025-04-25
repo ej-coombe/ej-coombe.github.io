@@ -162,10 +162,11 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .text-image-container {
   display: flex;
-  align-items: center; /* vertically align image and text */
-  gap: 20px; /* space between image and text */
+  align-items: center;
+  gap: 20px;
   max-width: 800px;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .text-image-container img {
@@ -175,5 +176,17 @@ nav ul li.dropdown:hover .dropdown-content {
 }
 
 .text-content {
-  flex: 1; /* let text take the remaining space */
+  flex: 1;
+}
+
+/* Responsive behavior */
+@media (max-width: 600px) {
+  .text-image-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .text-image-container img {
+    width: 100%; /* make image full width on small screens */
+  }
 }
