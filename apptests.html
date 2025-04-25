@@ -93,7 +93,8 @@
     }
 
     async function getAccessToken(code) {
-      const codeVerifier = localStorage.getItem("code_verifier");
+const codeVerifier = localStorage.getItem("code_verifier");
+console.log("Code verifier: ", codeVerifier);  // Make sure it's being retrieved correctly
 
       const body = new URLSearchParams({
         client_id: clientId,
