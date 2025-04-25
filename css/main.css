@@ -140,3 +140,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Social media icons */
 
+.page-footer {
+  background-color: #F06D71;
+  padding: 1em;
+}
