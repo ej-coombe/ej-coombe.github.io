@@ -110,6 +110,9 @@ img {
 /* Float right work page images */
 .work-imgage + .work-imgage {
   float: right;
+    width:  100px;
+    height: 100px;
+    object-fit: cover;
 }
 
 
