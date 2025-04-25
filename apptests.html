@@ -111,22 +111,22 @@
       displayTracks(data.items);
     }
 
-    function displayTracks(tracks) {
-      const container = document.getElementById("tracks");
-      container.innerHTML = "";
-      tracks.forEach(track => {
-        container.innerHTML += `
-          <div class="track">
-            <img src="${track.album.images[0].url}" alt="${track.name}" />
-            <div class="track-info">
-              <strong>${track.name}</strong><br />
-              ${track.artists.map(a => a.name).join(", ")}<br />
-              ${track.preview_url ? `<audio controls src="${track.preview_url}"></audio>` : '<em>No preview available</em>'}
-            </div>
-          </div>
-        `;
-      });
-    }
+function displayTracks(tracks) {
+  const container = document.getElementById("tracks");
+  container.innerHTML = "";
+  tracks.forEach(track => {
+    container.innerHTML += `
+      <div class="track">
+        <img src="${track.album.images[0].url}" alt="${track.name}" />
+        <div class="track-info">
+          <strong>${track.name}</strong><br />
+          ${track.artists.map(a => a.name).join(", ")}<br />
+          <iframe src="https://open.spotify.com/embed/track/${track.id}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+      </div>
+    `;
+  });
+}
 
     async function handleRedirect() {
       const code = new URLSearchParams(window.location.search).get("code");
