@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search History Quiz</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f5f5f5;
+    }
+    .quiz-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-box">
+    <h1>Search History Quiz</h1>
+    <input type="file" id="fileInput" accept=".json" />
+    <div id="quizSection" class="hidden">
+      <p id="question"></p>
+      <div id="choices"></div>
+      <button onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+
+  <script>
+    let searchQueries = [];
+    let currentQuestion = 0;
+    let quizData = [];
+
+    document.getElementById('fileInput').addEventListener('change', handleFileUpload);
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const json = JSON.parse(e.target.result);
+        searchQueries = json['Browser History']?.map(entry => entry.title) || [];
+        startQuiz();
+      };
+
+      reader.readAsText(file);
+    }
+
+    function startQuiz() {
+      document.getElementById('quizSection').classList.remove('hidden');
+      quizData = generateQuiz(searchQueries);
+      showQuestion();
+    }
+
+    function generateQuiz(queries) {
+      const questions = [];
+      for (let i = 0; i < Math.min(10, queries.length); i++) {
+        const real = queries[i];
+        const fake = 'Search for "How to train a dragon"';
+        questions.push({
+          question: `Did you search for: "${real}"?`,
+          correct: true
+        });
+        questions.push({
+          question: `Did you search for: "${fake}"?`,
+          correct: false
+        });
+      }
+      return shuffle(questions);
+    }
+
+    function showQuestion() {
+      const q = quizData[currentQuestion];
+      if (!q) {
+        document.getElementById('question').textContent = 'Quiz complete!';
+        document.getElementById('choices').innerHTML = '';
+        return;
+      }
+
+      document.getElementById('question').textContent = q.question;
+      document.getElementById('choices').innerHTML = `
+        <button onclick="checkAnswer(true)">Yes</button>
+        <button onclick="checkAnswer(false)">No</button>
+      `;
+    }
+
+    function checkAnswer(answer) {
+      const q = quizData[currentQuestion];
+      alert(answer === q.correct ? 'Correct!' : 'Oops!');
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      showQuestion();
+    }
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+  </script>
+</body>
+</html>
