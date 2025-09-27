@@ -2,6 +2,7 @@ body {
     margin: 60px auto;
     width: 70%;
     font-family:"Myriad-pro-1", "Myriad-pro-2", Helvetica, Arial, sans-serif;
+      font-size: 16px; /* base size = 1rem */
 }
 li {
     font-size: 10px;
@@ -21,12 +22,13 @@ nav ul li, footer ul li {
 
 nav a {
     color: #d5d5d5; /* Darker grey on hover */
+    font-size: 1rem; /* keep links readable */
 
 }
 nav {
     border-top: 0px solid #d5d5d5;
     border-bottom: 0px solid #d5d5d5;
-    font-size: 10px;
+    font-size: 1rem;
 }
 
 .nav-active {
@@ -148,7 +150,7 @@ nav ul li .dropdown-content a {
     text-decoration: none;
     display: block;
     font-weight: normal;
-    font-size: 0.9em;
+    font-size: 1rem;
 }
 
 nav ul li .dropdown-content a:hover {
