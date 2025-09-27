@@ -4,8 +4,8 @@ body {
     font-family:"Myriad-pro-1", "Myriad-pro-2", Helvetica, Arial, sans-serif;
 }
 li {
-    font-size: 6em;
-    margin-bottom: 1em;
+    font-size: 1rem;
+    margin-bottom: 6px;
 
 }
 nav ul, footer ul {
