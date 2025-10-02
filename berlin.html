@@ -7,6 +7,34 @@
     <!-- link to main stylesheet -->
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="icon" href="https://pro2-bar-s3-cdn-cf2.myportfolio.com/f745c8b605c62e9b2c18a4cdef48167a/d136b7e9-54c2-4f66-8e39-7a70b16c0670_carw_1x1x32.jpg?h=c6e6a9120f0410e11a7afa43947d8eff" />
+    <style>
+      /* Layout for content + sidebar */
+      main {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+      .sidebar {
+        position: sticky;
+        top: 2rem; /* distance from top */
+        align-self: start;
+      }
+      .sidebar img {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+        border-radius: 6px;
+      }
+      /* Stack on small screens */
+      @media (max-width: 800px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+        }
+      }
+    </style>
   </head>
   <body>
     <h1>e<span style="color: red;">j</span>coombe</h1>
@@ -38,129 +66,138 @@
     </nav>
 
     <main>
-      <h2>Berlin Recommendations</h2>
+      <div class="content">
+        <h2>Berlin Recommendations</h2>
 
-      <section id="coffee">
-        <h3>Coffee</h3>
-        <ul>
-          <li>Silo</li>
-          <li>Bonanza</li>
-          <li>Five Elephant</li>
-          <li>The Barn</li>
-          <li>Cafe CK</li>
-          <li>Katie’s Blue Cat</li>
-        </ul>
-      </section>
+        <section id="coffee">
+          <h3>Coffee</h3>
+          <ul>
+            <li>Silo</li>
+            <li>Bonanza</li>
+            <li>Five Elephant</li>
+            <li>The Barn</li>
+            <li>Cafe CK</li>
+            <li>Katie’s Blue Cat</li>
+          </ul>
+        </section>
 
-      <section id="bakeries">
-        <h3>Bakeries</h3>
-        <ul>
-          <li>Zeit fur Brot</li>
-          <li>Krautzig</li>
-          <li>Backerei Hacker</li>
-          <li>Backer Kroll</li>
-          <li>Backerei und Konditorei Siebert</li>
-        </ul>
-      </section>
+        <section id="bakeries">
+          <h3>Bakeries</h3>
+          <ul>
+            <li>Zeit fur Brot</li>
+            <li>Krautzig</li>
+            <li>Backerei Hacker</li>
+            <li>Backer Kroll</li>
+            <li>Backerei und Konditorei Siebert</li>
+          </ul>
+        </section>
 
-      <section id="drinking">
-        <h3>Drinking</h3>
-        <ul>
-          <li>Hermann</li>
-          <li>Eschenbrau</li>
-          <li>Heiden Peters</li>
-          <li>A</li>
-          <li>Tier</li>
-          <li>Süden Gartenwirtschaft</li>
-          <li>Rollberger Brauerei</li>
-          <li>Bareneck</li>
-          <li>John Muir</li>
-          <li>Westend Klause</li>
-          <li>Hackbarths</li>
-        </ul>
-      </section>
+        <section id="drinking">
+          <h3>Drinking</h3>
+          <ul>
+            <li>Hermann</li>
+            <li>Eschenbrau</li>
+            <li>Heiden Peters</li>
+            <li>A</li>
+            <li>Tier</li>
+            <li>Süden Gartenwirtschaft</li>
+            <li>Rollberger Brauerei</li>
+            <li>Bareneck</li>
+            <li>John Muir</li>
+            <li>Westend Klause</li>
+            <li>Hackbarths</li>
+          </ul>
+        </section>
 
-      <section id="eating">
-        <h3>Eating</h3>
-        <ul>
-          <li>Die Henne</li>
-          <li>Chez Michel</li>
-          <li>Clarchens Ballhaus</li>
-          <li>YamYam</li>
-          <li>Wok Show</li>
-          <li>Gel Gor</li>
-          <li>Markthalle Neun</li>
-          <li>Joseph Roth Diele</li>
-          <li>Zur Lesten Instanz</li>
-          <li>The Bird</li>
-          <li>Lokal</li>
-          <li>Cocolo</li>
-          <li>Zola Pizza</li>
-          <li>Standard Pizza</li>
-          <li>Sahara Imbiss</li>
-          <li>La Pecora Nera</li>
-          <li>Il Casalore</li>
-          <li>Lon Mens Noodle House</li>
-          <li>Rosenthaler Grill</li>
-          <li>Altes Europa</li>
-        </ul>
-      </section>
+        <section id="eating">
+          <h3>Eating</h3>
+          <ul>
+            <li>Die Henne</li>
+            <li>Chez Michel</li>
+            <li>Clarchens Ballhaus</li>
+            <li>YamYam</li>
+            <li>Wok Show</li>
+            <li>Gel Gor</li>
+            <li>Markthalle Neun</li>
+            <li>Joseph Roth Diele</li>
+            <li>Zur Lesten Instanz</li>
+            <li>The Bird</li>
+            <li>Lokal</li>
+            <li>Cocolo</li>
+            <li>Zola Pizza</li>
+            <li>Standard Pizza</li>
+            <li>Sahara Imbiss</li>
+            <li>La Pecora Nera</li>
+            <li>Il Casalore</li>
+            <li>Lon Mens Noodle House</li>
+            <li>Rosenthaler Grill</li>
+            <li>Altes Europa</li>
+          </ul>
+        </section>
 
-      <section id="dance">
-        <h3>Dance</h3>
-        <ul>
-          <li>Wilde Renate</li>
-          <li>Club der Visionaire</li>
-          <li>Chalet</li>
-          <li>Farbfernseher</li>
-        </ul>
-      </section>
+        <section id="dance">
+          <h3>Dance</h3>
+          <ul>
+            <li>Wilde Renate</li>
+            <li>Club der Visionaire</li>
+            <li>Chalet</li>
+            <li>Farbfernseher</li>
+          </ul>
+        </section>
 
-      <section id="records">
-        <h3>Records</h3>
-        <ul>
-          <li>Rauh Vinyl</li>
-          <li>Oye Records</li>
-          <li>Space Hall</li>
-          <li>HHV</li>
-          <li>Vopo Records</li>
-          <li>Wowsville</li>
-        </ul>
-      </section>
+        <section id="records">
+          <h3>Records</h3>
+          <ul>
+            <li>Rauh Vinyl</li>
+            <li>Oye Records</li>
+            <li>Space Hall</li>
+            <li>HHV</li>
+            <li>Vopo Records</li>
+            <li>Wowsville</li>
+          </ul>
+        </section>
 
-      <section id="markets">
-        <h3>Markets</h3>
-        <ul>
-          <li>Arkonaplatz</li>
-          <li>Boxhagener platz</li>
-        </ul>
-      </section>
+        <section id="markets">
+          <h3>Markets</h3>
+          <ul>
+            <li>Arkonaplatz</li>
+            <li>Boxhagener platz</li>
+          </ul>
+        </section>
 
-      <section id="galleries">
-        <h3>Galleries / Museums</h3>
-        <ul>
-          <li>Gropius Bauhaus</li>
-          <li>Hamburger Bahnhof</li>
-          <li>Machmit!</li>
-        </ul>
-      </section>
+        <section id="galleries">
+          <h3>Galleries / Museums</h3>
+          <ul>
+            <li>Gropius Bauhaus</li>
+            <li>Hamburger Bahnhof</li>
+            <li>Machmit!</li>
+          </ul>
+        </section>
 
-      <section id="outdoors">
-        <h3>Outdoors</h3>
-        <ul>
-          <li>Temeplhof</li>
-          <li>Naturpark Sudgelande</li>
-          <li>Wansee</li>
-          <li>Nikolassee</li>
-          <li>Tegelsee</li>
-          <li>Schlactensee</li>
-          <li>Krumme Lanke</li>
-          <li>Weissensee</li>
-          <li>Plotzensee</li>
-          <li>Liepnitzsee</li>
-          <li>Wandlitz</li>
-        </ul>
-      </section>
+        <section id="outdoors">
+          <h3>Outdoors</h3>
+          <ul>
+            <li>Temeplhof</li>
+            <li>Naturpark Sudgelande</li>
+            <li>Wansee</li>
+            <li>Nikolassee</li>
+            <li>Tegelsee</li>
+            <li>Schlactensee</li>
+            <li>Krumme Lanke</li>
+            <li>Weissensee</li>
+            <li>Plotzensee</li>
+            <li>Liepnitzsee</li>
+            <li>Wandlitz</li>
+          </ul>
+        </section>
+      </div>
+
+      <aside class="sidebar">
+        <!-- Replace these with your actual image URLs -->
+        <img src="eschenbrau.JPG" alt="Berlin photo 1">
+        <img src="https://placekitten.com/301/400" alt="Berlin photo 2">
+        <img src="https://placekitten.com/302/400" alt="Berlin photo 3">
+      </aside>
     </main>
   </body>
 </html>
