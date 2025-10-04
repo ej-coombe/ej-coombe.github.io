@@ -1,18 +1,95 @@
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ejcoombe</title>
-    <!-- link to main stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="icon" href="https://pro2-bar-s3-cdn-cf2.myportfolio.com/f745c8b605c62e9b2c18a4cdef48167a/d136b7e9-54c2-4f66-8e39-7a70b16c0670_carw_1x1x32.jpg?h=c6e6a9120f0410e11a7afa43947d8eff"/>
-  </head>
-  <body>
-      <h1>e<span style="color: red;">j</span>coombe</h1>
-<nav>
-        <ul>
-          <li><a href="index.html" class="nav-active">home</a></li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ejcoombe - Recipes</title>
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="icon" href="https://pro2-bar-s3-cdn-cf2.myportfolio.com/f745c8b605c62e9b2c18a4cdef48167a/d136b7e9-54c2-4f66-8e39-7a70b16c0670_carw_1x1x32.jpg?h=c6e6a9120f0410e11a7afa43947d8eff"/>
+  <style>
+    /* Recipe Grid and Hover Overlay */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .recipe-box {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .recipe-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .recipe-box img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 0.5rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .recipe-box:hover .overlay {
+      opacity: 1;
+    }
+
+    section.recipe {
+      padding: 2rem 1rem;
+      border-top: 2px solid #f0f0f0;
+      scroll-margin-top: 80px; /* offset if nav bar is fixed */
+    }
+
+    section.recipe img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    a.back-top {
+      display: inline-block;
+      margin-top: 1rem;
+      text-decoration: none;
+      color: #f8b400;
+      font-weight: bold;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>e<span style="color: red;">j</span>coombe</h1>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="index.html" class="nav-active">home</a></li>
       <li><a href="work.html">work</a></li>
-    <li class="dropdown">
+      <li class="dropdown">
         <a href="index.html">projects</a>
         <div class="dropdown-content">
           <a href="https://wtfdoifeedyou.substack.com/">wtf do i feed you!?</a>
@@ -20,9 +97,9 @@
           <a href="https://www.instagram.com/brotchendublin/">brotchen</a>
         </div>
       </li>
-          <li><a href="music.html">music</a></li>
-          <li><a href="recipes.html">recipes</a></li>
-    <li class="dropdown">
+      <li><a href="music.html">music</a></li>
+      <li><a href="recipes.html">recipes</a></li>
+      <li class="dropdown">
         <a href="index.html">travel</a>
         <div class="dropdown-content">
           <a href="berlin.html">berlin</a>
@@ -31,12 +108,93 @@
           <a href="ireland.html">ireland</a>
           <a href="elsewhere.html">elsewhere</a>
         </div>
-                  <li><a href="apptests.html">app tests</a></li>
+      </li>
+      <li><a href="apptests.html">app tests</a></li>
       <li><a href="mailto:ejcoombe@gmail.com">contact</a></li>
-      </ul>
-      </nav>
-      <p>Recipes</p>
-      <br>
+    </ul>
+  </nav>
 
-    </body>
+  <main>
+    <h2>Recipes</h2>
+
+    <!-- Recipe Grid -->
+    <div class="recipe-grid">
+      <div class="recipe-box" onclick="location.href='#recipe1'">
+        <img src="recipe1.jpg" alt="Chocolate Cake">
+        <div class="overlay">Chocolate Cake</div>
+      </div>
+      <div class="recipe-box" onclick="location.href='#recipe2'">
+        <img src="recipe2.jpg" alt="Spaghetti Bolognese">
+        <div class="overlay">Spaghetti Bolognese</div>
+      </div>
+      <div class="recipe-box" onclick="location.href='#recipe3'">
+        <img src="recipe3.jpg" alt="Caesar Salad">
+        <div class="overlay">Caesar Salad</div>
+      </div>
+      <div class="recipe-box" onclick="location.href='#recipe4'">
+        <img src="recipe4.jpg" alt="Apple Pie">
+        <div class="overlay">Apple Pie</div>
+      </div>
+      <div class="recipe-box" onclick="location.href='#recipe5'">
+        <img src="recipe5.jpg" alt="Chicken Curry">
+        <div class="overlay">Chicken Curry</div>
+      </div>
+      <div class="recipe-box" onclick="location.href='#recipe6'">
+        <img src="recipe6.jpg" alt="Vegetable Stir Fry">
+        <div class="overlay">Vegetable Stir Fry</div>
+      </div>
+    </div>
+
+    <!-- Recipe Details -->
+    <section class="recipe" id="recipe1">
+      <h2>Chocolate Cake</h2>
+      <img src="recipe1.jpg" alt="Chocolate Cake">
+      <p><strong>Ingredients:</strong> Flour, Cocoa, Sugar, Eggs, Butter...</p>
+      <p><strong>Instructions:</strong> Mix, bake, and enjoy your chocolate cake!</p>
+      <a class="back-top" href="#">⬆ Back to top</a>
+    </section>
+
+    <section class="recipe" id="recipe2">
+      <h2>Spaghetti Bolognese</h2>
+      <img src="recipe2.jpg" alt="Spaghetti Bolognese">
+      <p><strong>Ingredients:</strong> Spaghetti, Minced Beef, Tomatoes, Onion...</p>
+      <p><strong>Instructions:</strong> Cook pasta, prepare sauce, combine, and serve.</p>
+      <a class="back-top" href="#">⬆ Back to top</a>
+    </section>
+
+    <section class="recipe" id="recipe3">
+      <h2>Caesar Salad</h2>
+      <img src="recipe3.jpg" alt="Caesar Salad">
+      <p><strong>Ingredients:</strong> Lettuce, Croutons, Parmesan, Chicken...</p>
+      <p><strong>Instructions:</strong> Toss ingredients together and enjoy.</p>
+      <a class="back-top" href="#">⬆ Back to top</a>
+    </section>
+
+    <section class="recipe" id="recipe4">
+      <h2>Apple Pie</h2>
+      <img src="recipe4.jpg" alt="Apple Pie">
+      <p><strong>Ingredients:</strong> Apples, Pastry, Sugar, Cinnamon...</p>
+      <p><strong>Instructions:</strong> Prepare filling, bake in pastry, and serve.</p>
+      <a class="back-top" href="#">⬆ Back to top</a>
+    </section>
+
+    <section class="recipe" id="recipe5">
+      <h2>Chicken Curry</h2>
+      <img src="recipe5.jpg" alt="Chicken Curry">
+      <p><strong>Ingredients:</strong> Chicken, Curry Powder, Onion, Coconut Milk...</p>
+      <p><strong>Instructions:</strong> Cook chicken, add spices and simmer with sauce.</p>
+      <a class="back-top" href="#">⬆ Back to top</a>
+    </section>
+
+    <section class="recipe" id="recipe6">
+      <h2>Vegetable Stir Fry</h2>
+      <img src="recipe6.jpg" alt="Vegetable Stir Fry">
+      <p><strong>Ingredients:</strong> Mixed Vegetables, Soy Sauce, Garlic, Ginger...</p>
+      <p><strong>Instructions:</strong> Stir fry vegetables, add sauce, serve hot.</p>
+      <a class="back-top" href="#">⬆ Back to top</a>
+    </section>
+
+  </main>
+
+</body>
 </html>
