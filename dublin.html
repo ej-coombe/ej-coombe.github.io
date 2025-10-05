@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejcoombe</title>
+    <!-- link to main stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="icon" href="https://pro2-bar-s3-cdn-cf2.myportfolio.com/f745c8b605c62e9b2c18a4cdef48167a/d136b7e9-54c2-4f66-8e39-7a70b16c0670_carw_1x1x32.jpg?h=c6e6a9120f0410e11a7afa43947d8eff" />
+    <style>
+      /* Layout for content + sidebar */
+      main {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+      .sidebar {
+        position: sticky;
+        top: 2rem; /* distance from top */
+        align-self: start;
+      }
+      .sidebar img {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+        border-radius: 6px;
+      }
+      /* Stack on small screens */
+      @media (max-width: 800px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>e<span style="color: red;">j</span>coombe</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="nav-active">home</a></li>
+        <li><a href="work.html">work</a></li>
+        <li class="dropdown">
+          <a href="index.html">projects</a>
+          <div class="dropdown-content">
+            <a href="https://wtfdoifeedyou.substack.com/">wtf do i feed you!?</a>
+            <a href="https://dublinrecordclub.com/">dublin record club</a>
+            <a href="https://www.instagram.com/brotchendublin/">brotchen</a>
+          </div>
+        </li>
+        <li><a href="music.html">music</a></li>
+        <li><a href="recipes.html">recipes</a></li>
+        <li class="dropdown">
+          <a href="index.html">travel</a>
+        <div class="dropdown-content">
+          <a href="berlin.html">berlin</a>
+          <a href="dublin.html">dublin</a>
+          <a href="UK.html">uk</a>
+          <a href="ireland.html">ireland</a>
+          <a href="elsewhere.html">elsewhere</a>
+        </div>        </li>
+        <li><a href="apptests.html">app tests</a></li>
+        <li><a href="mailto:ejcoombe@gmail.com">contact</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <div class="content">
+        <section id="coffee">
+          <h3>Coffee</h3>
+          <ul>
+            <li>Lilliput Stores, Rosemount Terrace, Stoneybatter, Dublin 7</li>
+            <li>Proper Order, Unit 1, The Distillery Building, Smithfield, D07 WDX9</li>
+            <li>Bang Bang, 59A Leinster St N, Phibsborough, D07 X962</li>
+            <li>Cloud Picker, The Projector Room, The Academy, 42 Pearse St, Dublin 2</li>
+            <li>Happy Out, Bull Wall, Bull Island, Clontarf</li>
+            <li>Coffee Angel, 16 Anne St S, Dublin, D02 VF29</li>
+            <li>3fe, 363 N Circular Rd, Cabra East, D07 C9CH</li>
+            <li>Green Bench Cafe, 18 Montague St, Saint Kevin's, D02 VE29</li>
+          </ul>
+        </section>
+
+        <section id="bakeries">
+          <h3>Bakeries</h3>
+          <ul>
+            <li>Clarkes, 52/54 New Cabra Road, Cabra East, D07 A278</li>
+            <li>Catherines, 16/17 Meath St, The Liberties, D08 K2E9</li>
+            <li>Baker Street, 33 Glasthule Rd, Sandycove, A96 W298</li>
+            <li>Bread41, 41 Pearse St, Dublin 2, D02 H308</li>
+            <li>Sceal Bakery, Unit E, The Bracken, Greystones, A63 K7W7</li>
+            <li>Elliot's, 43 Arran St E, Smithfield, Dublin 7, D07 W226</li>
+            <li>Rolling Donut (Broadway Kiosk), 8 O'Connell Street Lower, D01 P2C7</li>
+          </ul>
+        </section>
+
+        <section id="drinking">
+          <h3>Drinking</h3>
+          <ul>
+            <li>Walsh's, 6 Stoneybatter, Dublin 7, D07 A382</li>
+            <li>The Lord Edward, 23 Christchurch Pl, Wood Quay, D08 RK00</li>
+            <li>Sheehans, 17 Chatham St, D02 X923</li>
+            <li>Kehoes, 9 Anne St S, D02 NY88</li>
+            <li>Hartigans, 100 Leeson Street Lower, D02 W023</li>
+            <li>O'Donoghues, 15 Merrion Row, D02 PF50</li>
+            <li>John Fallon's, 129 The Coombe, The Liberties, D08 NP52</li>
+            <li>McNeill's, 140 Capel St, North City, D01 F9R2</li>
+            <li>The Cobblestone, 77 King St N, Smithfield, D07 TP22</li>
+            <li>Bar 1661, 1-5 Green St, Rotunda, D07 YT6H</li>
+            <li>The Long Hall, 51 South Great George's Street, D02 DV74</li>
+            <li>Mulligan's, 8 Poolbeg St, DO2TK71</li>
+            <li>Bowe's, 31 Fleet St, D02 DF77</li>
+
+
+          </ul>
+        </section>
+
+        <section id="eating">
+          <h3>Eating</h3>
+          <ul>
+            <li>Assasination Custard, 19A Kevin Street Lower, Portobello, Dublin 8</li>
+            <li>The Fumbally, Fumbally Ln, The Liberties, D08 HFF2</li>
+            <li>Note, 26 Fenian St, D02 FX09</li>
+            <li>Teo's Take Away, 105 Cabra Rd, Cabra, D07 N2CK</li>
+            <li>Uno Mas, 6 Aungier St, D02 WN47</li>
+            <li>Andhra Bhavan, 85 Marlborough Pl, North City, D01 A2X6</li>
+            <li>Kimchi Hophouse, 160-161 Parnell St, Rotunda, D01 Y4A7</li>
+            <li>Aobaba, 46A Capel St, North City, D01 P293</li>
+
+            <li>McNally's Family Farm, Balrickard, Co. Dublin, K32 RW08</li>
+            <li>Roundwood Stores, Main Street, Togher Beg, Roundwood, Co. Wicklow</li>
+            <li>Strandfield, Dundalk, Co. Louth</li>
+
+          </ul>
+        </section>
+
+        <section id="outdoors">
+          <h3>Outdoors</h3>
+          <ul>
+            <li>Temeplhof</li>
+            <li>Naturpark Sudgelande</li>
+            <li>Wansee</li>
+            <li>Nikolassee</li>
+            <li>Tegelsee</li>
+            <li>Schlactensee</li>
+            <li>Krumme Lanke</li>
+            <li>Weissensee</li>
+            <li>Plotzensee</li>
+            <li>Liepnitzsee</li>
+            <li>Wandlitz</li>
+            <li>Nachbarschaftsgarten Moritzplatz, Prinzenstraße 35-38, 10969</li>
+            <li>Südwestkirchhof Stahnsdorf, Bahnhofstraße 2, 14532</li>
+            <li>Grunewaldturm, Havelchaussee 61, 14193</li>
+          </ul>
+        </section>
+
+        </section>
+      </div>
+
+      <aside class="sidebar">
+        <!-- Replace these with your actual image URLs -->
+        <img src="/berlinimg/eschenbrau.JPG" alt="Berlin photo 1">
+        <img src="/berlinimg/lmnh.JPG" alt="Berlin photo 2">
+        <img src="/berlinimg/preist.JPG" alt="Berlin photo 3">
+      </aside>
+    </main>
+  </body>
+</html>
