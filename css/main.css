@@ -208,3 +208,27 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Style for embed players */
 
+/* Make each recipe section a horizontal flex container */
+.recipe {
+  display: flex;
+  align-items: flex-start; /* align text and image along the top */
+  justify-content: space-between; /* space between text and image */
+  gap: 20px; /* add some space between text and image */
+  margin-bottom: 40px; /* space between recipes */
+  border-bottom: 1px solid #ddd; /* optional visual separator */
+  padding-bottom: 20px;
+}
+
+/* Ensure text stays in its own block */
+.recipe h2,
+.recipe p {
+  max-width: 60%; /* keep text readable and not too wide */
+}
+
+/* Style the images */
+.recipe img {
+  width: 250px; /* adjust as needed */
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
