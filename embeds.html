@@ -1,80 +1,321 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Limited Addition Records – Ready to Ship Music</title>
+import { useState } from "react";
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #eee;
-    }
-    header {
-      text-align: center;
-      padding: 40px;
-      background: #222;
-      font-size: 2rem;
-      border-bottom: 1px solid #333;
-    }
-    .album {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #1a1a1a;
-      border-radius: 8px;
-    }
-    .album h2 {
-      margin: 0 0 15px;
-      font-size: 1.3rem;
-    }
-    iframe {
-      width: 100%;
-      border-radius: 12px;
-      border: none;
-    }
-    .note {
-      font-size: 0.9rem;
-      color: #bbb;
-      margin-top: 8px;
-    }
-    footer {
-      text-align: center;
-      padding: 30px 0;
-      color: #777;
-      font-size: 0.9rem;
-    }
-  </style>
-</head>
-<body>
+function Card({ children }) {
+  return (
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100">
+      {children}
+    </div>
+  );
+}
 
-<header>Limited Addition Records – Ready to Ship</header>
+function CardContent({ children, className = "" }) {
+  return <div className={`p-6 ${className}`}>{children}</div>;
+}
 
-<!-- Kim Deal — Nobody Loves You More -->
-<div class="album">
-  <h2>Kim Deal — Nobody Loves You More</h2>
-  <iframe
-    src="https://open.spotify.com/embed/album/6MygjJ2a8narXmZnk9ifKp"
-    height="380"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-  </iframe>
-  <div class="note">Streaming via Spotify — album available on official Spotify. :contentReference[oaicite:2]{index=2}</div>
-</div>
+function Button({ children, onClick, type = "button" }) {
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      className="mt-4 w-full rounded-xl bg-black text-white py-2 text-sm hover:bg-gray-800 transition"
+    >
+      {children}
+    </button>
+  );
+}
 
-<!-- Opa — Goldenwings -->
-<div class="album">
-  <h2>Opa — Goldenwings</h2>
-  <iframe 
-    style="border:0; width:100%; height:470px;"
-    src="https://bandcamp.com/EmbeddedPlayer/album=2408816917/size=large/bgcol=333333/linkcol=ffffff/transparent=true/"
-    seamless>
-  </iframe>
-  <div class="note">Streaming via Bandcamp — official album page for *Goldenwings*. :contentReference[oaicite:3]{index=3}</div>
-</div>
+export default function MusicPlatformPrototype() {
+  const comingSoonReleases = [
+    {
+      artist: "Kaitlyn Aurelia Smith",
+      title: "The Mosaic of Transformation (Limited Edition LP)",
+      releaseDate: "Coming Soon",
+      source: "Limited Addition Records",
+      image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d",
+    },
+    {
+      artist: "Nala Sinephro",
+      title: "Space 1.8 - Repress",
+      releaseDate: "Coming Soon",
+      source: "Limited Addition Records",
+      image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4",
+    },
+    {
+      artist: "Floating Points",
+      title: "Reflections / Mojave Desert (Vinyl)",
+      releaseDate: "Coming Soon",
+      source: "Limited Addition Records",
+      image: "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2",
+    },
+    {
+      artist: "Various Artists",
+      title: "Limited Addition Records - Curated Compilation",
+      releaseDate: "Coming Soon",
+      source: "Limited Addition Records",
+      image: "https://images.unsplash.com/photo-1519985176271-adb1088fa94c",
+    },
+  ];
 
-<footer>Music embeds from Spotify & Bandcamp — Limited Addition Records Ready to Ship</footer>
+  const editorialPicks = [
+    {
+      title: "19 Great Leftfield Pop Albums",
+      description:
+        "Jon Hillcock highlights adventurous pop records that stretch the form without losing emotional impact.",
+      source: "Jon Hillcock Substack",
+    },
+    {
+      title: "New Music Friday: Weekly Discoveries",
+      description:
+        "A round-up of new releases spanning electronic, indie, experimental, and alternative pop.",
+      source: "Jon Hillcock Substack",
+    },
+    {
+      title: "Albums Worth Your Time",
+      description:
+        "Deep listening recommendations focusing on cohesion, craft, and atmosphere.",
+      source: "Jon Hillcock Substack",
+    },
+  ];
 
-</body>
-</html>
+  const [feeds, setFeeds] = useState([
+    {
+      name: "Jon Hillcock",
+      type: "Substack",
+      url: "https://jonhillcock.substack.com",
+    },
+    {
+      name: "Lost Map Records",
+      type: "Spotify",
+      url: "https://open.spotify.com/user/lostmaprecords",
+    },
+    {
+      name: "CCJ Playlists",
+      type: "Spotify",
+      url: "https://open.spotify.com/user/ccjpmb4r70wvbphuvbnysl3q5",
+    },
+    {
+      name: "Noise Narrative",
+      type: "Substack",
+      url: "https://noisenarrative.substack.com",
+    },
+  ]);
+
+  const feedContent = {
+    "https://jonhillcock.substack.com": [
+      {
+        type: "Article",
+        title: "19 Great Leftfield Pop Albums",
+        excerpt: "Adventurous pop records that stretch the form without losing emotional impact.",
+      },
+      {
+        type: "Article",
+        title: "Albums Worth Your Time",
+        excerpt: "Deep listening recommendations focused on cohesion and atmosphere.",
+      },
+    ],
+    "https://open.spotify.com/user/lostmaprecords": [
+      {
+        type: "Playlist",
+        title: "Lost Map Favourites",
+        excerpt: "Folk, indie, and alternative selections from the Lost Map Records orbit.",
+        embed: "https://open.spotify.com/embed/playlist/37i9dQZF1DX3rxVfibe1L0"
+      },
+      {
+        type: "Playlist",
+        title: "New Scottish Music",
+        excerpt: "A regularly updated playlist spotlighting emerging Scottish artists.",
+        embed: "https://open.spotify.com/embed/playlist/37i9dQZF1DX5kjCm3sPZ5Y"
+      },
+    ],
+    "https://open.spotify.com/user/ccjpmb4r70wvbphuvbnysl3q5": [
+      {
+        type: "Playlist",
+        title: "Deep Listening",
+        excerpt: "Immersive tracks spanning ambient, experimental, and modern classical.",
+        embed: "https://open.spotify.com/embed/playlist/37i9dQZF1DX4E3UdUs7fUx"
+      },
+      {
+        type: "Playlist",
+        title: "Late Night Electronics",
+        excerpt: "Subdued electronic and leftfield selections for after dark listening.",
+        embed: "https://open.spotify.com/embed/playlist/37i9dQZF1DX0XUsuxWHRQd"
+      },
+    ],
+    "https://noisenarrative.substack.com": [
+      {
+        type: "Article",
+        title: "Listening Notes: New Experimental Releases",
+        excerpt: "Thoughtful commentary on recent experimental and noise-adjacent records.",
+      },
+      {
+        type: "Article",
+        title: "Why Texture Matters in Music",
+        excerpt: "An essay exploring texture, density, and abstraction in contemporary sound.",
+      },
+    ],
+  };
+
+  const [newFeed, setNewFeed] = useState({ name: "", type: "", url: "" });
+
+  function addFeed() {
+    if (!newFeed.name || !newFeed.type || !newFeed.url) return;
+    setFeeds([...feeds, newFeed]);
+    setNewFeed({ name: "", type: "", url: "" });
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50 p-6">
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold tracking-tight">New Music Radar</h1>
+        <p className="text-gray-600 mt-2">
+          A community-driven music discovery platform powered by tastemakers
+        </p>
+      </header>
+
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <Card>
+          <CardContent>
+            <div className="text-2xl mb-2">📅</div>
+            <h2 className="text-xl font-semibold">Coming Soon</h2>
+            <p className="text-gray-600 text-sm mt-2">
+              Upcoming releases from trusted record labels.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+            <div className="text-2xl mb-2">📖</div>
+            <h2 className="text-xl font-semibold">Editorial</h2>
+            <p className="text-gray-600 text-sm mt-2">
+              Essays, lists, and recommendations from tastemakers.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+            <div className="text-2xl mb-2">➕</div>
+            <h2 className="text-xl font-semibold">Add Feeds</h2>
+            <p className="text-gray-600 text-sm mt-2">
+              Follow Substacks, playlists, and sites you trust.
+            </p>
+          </CardContent>
+        </Card>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-4">Your Feeds</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          {feeds.map((feed, index) => (
+            <Card key={index}>
+              <CardContent>
+                <h3 className="font-semibold">{feed.name}</h3>
+                <p className="text-sm text-gray-600">{feed.type}</p>
+                <a
+                  href={feed.url}
+                  className="text-xs text-blue-600 break-all"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {feed.url}
+                </a>
+
+                {feedContent[feed.url] && (
+                  <div className="mt-4">
+                    <p className="text-xs font-semibold text-gray-500 mb-2">
+                      Latest from this feed
+                    </p>
+                    <div className="space-y-4">
+                      {feedContent[feed.url].map((item, i) => (
+                        <div key={i} className="text-sm">
+                          <p className="font-medium mb-1">{item.title}</p>
+                          <p className="text-xs text-gray-600 mb-2">{item.excerpt}</p>
+                          {item.embed && (
+                            <iframe
+                              src={item.embed}
+                              width="100%"
+                              height="80"
+                              frameBorder="0"
+                              allow="encrypted-media"
+                              allowFullScreen
+                              className="rounded-lg"
+                            ></iframe>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <Card>
+          <CardContent>
+            <h3 className="font-semibold mb-3">Add a new feed</h3>
+            <input
+              placeholder="Name (eg. Music Writer, Label)"
+              className="w-full mb-2 p-2 text-sm border rounded"
+              value={newFeed.name}
+              onChange={(e) => setNewFeed({ ...newFeed, name: e.target.value })}
+            />
+            <input
+              placeholder="Type (Substack, Spotify, Website)"
+              className="w-full mb-2 p-2 text-sm border rounded"
+              value={newFeed.type}
+              onChange={(e) => setNewFeed({ ...newFeed, type: e.target.value })}
+            />
+            <input
+              placeholder="URL"
+              className="w-full mb-2 p-2 text-sm border rounded"
+              value={newFeed.url}
+              onChange={(e) => setNewFeed({ ...newFeed, url: e.target.value })}
+            />
+            <Button onClick={addFeed}>Add Feed</Button>
+          </CardContent>
+        </Card>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-2xl font-semibold mb-4">Featured Upcoming Releases</h2>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {comingSoonReleases.map((release, index) => (
+            <Card key={index}>
+              <CardContent className="p-4">
+                <div className="aspect-square rounded-xl mb-3 overflow-hidden bg-gray-200">
+                  <img
+                    src={release.image}
+                    alt={release.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="font-medium">{release.artist}</h3>
+                <p className="text-sm text-gray-600">{release.title}</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {release.releaseDate} · {release.source}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Latest Editorial</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {editorialPicks.map((post, index) => (
+            <Card key={index}>
+              <CardContent>
+                <h3 className="font-semibold mb-2">{post.title}</h3>
+                <p className="text-sm text-gray-600 mb-3">{post.description}</p>
+                <p className="text-xs text-gray-500">{post.source}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
