@@ -3,106 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Limited Addition Records</title>
+  <title>Limited Addition Records – Ready to Ship Music</title>
 
   <style>
     body {
       margin: 0;
-      font-family: Helvetica, Arial, sans-serif;
-      background: #0e0e0e;
-      color: #f2f2f2;
-    }
-
-    header {
-      padding: 40px;
-      text-align: center;
-      font-size: 2.2rem;
-      letter-spacing: 2px;
+      font-family: Arial, sans-serif;
       background: #111;
-      border-bottom: 1px solid #222;
+      color: #eee;
     }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 30px;
+    header {
+      text-align: center;
       padding: 40px;
-      max-width: 1300px;
-      margin: auto;
+      background: #222;
+      font-size: 2rem;
+      border-bottom: 1px solid #333;
     }
-
     .album {
-      background: #161616;
+      max-width: 800px;
+      margin: 40px auto;
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,.4);
+      background: #1a1a1a;
+      border-radius: 8px;
     }
-
-    .album h3 {
-      margin: 0 0 15px 0;
-      font-weight: 500;
-      font-size: 1.1rem;
-      letter-spacing: .5px;
+    .album h2 {
+      margin: 0 0 15px;
+      font-size: 1.3rem;
     }
-
     iframe {
       width: 100%;
       border-radius: 12px;
       border: none;
     }
-
+    .note {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: 8px;
+    }
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 30px 0;
       color: #777;
-      font-size: .9rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  LIMITED ADDITION RECORDS
-</header>
+<header>Limited Addition Records – Ready to Ship</header>
 
-<div class="grid">
-
-  <!-- Spotify -->
-  <div class="album">
-    <h3>Take That — Nobody Else (30th Anniversary)</h3>
-    <iframe
-      src="https://open.spotify.com/embed/album/7oWEq9tYytMy4BeLC4USxJ"
-      height="380"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-    </iframe>
-  </div>
-
-  <!-- Bandcamp -->
-  <div class="album">
-    <h3>Infinite Coles — SweetFace Killah</h3>
-    <iframe
-      style="border:0; width:100%; height:470px;"
-      src="https://bandcamp.com/EmbeddedPlayer/album=3883516826/size=large/bgcol=333333/linkcol=ffffff/transparent=true/"
-      seamless>
-    </iframe>
-  </div>
-
-  <!-- Bandcamp -->
-  <div class="album">
-    <h3>Farao — Magical Thinking</h3>
-    <iframe
-      style="border:0; width:100%; height:470px;"
-      src="https://bandcamp.com/EmbeddedPlayer/album=1349843265/size=large/bgcol=333333/linkcol=ffffff/transparent=true/"
-      seamless>
-    </iframe>
-  </div>
-
+<!-- Kim Deal — Nobody Loves You More -->
+<div class="album">
+  <h2>Kim Deal — Nobody Loves You More</h2>
+  <iframe
+    src="https://open.spotify.com/embed/album/6MygjJ2a8narXmZnk9ifKp"
+    height="380"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+  </iframe>
+  <div class="note">Streaming via Spotify — album available on official Spotify. :contentReference[oaicite:2]{index=2}</div>
 </div>
 
-<footer>
-  Spotify + Bandcamp embeds · Limited Addition Records
-</footer>
+<!-- Opa — Goldenwings -->
+<div class="album">
+  <h2>Opa — Goldenwings</h2>
+  <iframe 
+    style="border:0; width:100%; height:470px;"
+    src="https://bandcamp.com/EmbeddedPlayer/album=2408816917/size=large/bgcol=333333/linkcol=ffffff/transparent=true/"
+    seamless>
+  </iframe>
+  <div class="note">Streaming via Bandcamp — official album page for *Goldenwings*. :contentReference[oaicite:3]{index=3}</div>
+</div>
+
+<footer>Music embeds from Spotify & Bandcamp — Limited Addition Records Ready to Ship</footer>
 
 </body>
 </html>
