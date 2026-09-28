@@ -3,184 +3,135 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>events</title>
+<title>Event Tracker</title>
 <style>
-:root{--bg:#fff;--fg:#111;--mut:#666;--line:#ddd;--card:#fafafa;--acc:#111}
-@media(prefers-color-scheme:dark){:root{--bg:#121212;--fg:#eee;--mut:#999;--line:#333;--card:#1b1b1b;--acc:#eee}}
+:root{--bg:#faf8f5;--card:#fff;--text:#1c1b1a;--muted:#6f6b66;--line:#e6e1da;--accent:#c2410c}
+@media (prefers-color-scheme:dark){:root{--bg:#161514;--card:#201f1d;--text:#f0ece6;--muted:#9a948b;--line:#33312e;--accent:#fb923c}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
-main{max-width:720px;margin:0 auto;padding:24px 16px 64px}
-h1{font-size:1.6rem;margin:0 0 4px}
-.sub{color:var(--mut);margin:0 0 20px}
-form{display:flex;gap:8px;margin-bottom:6px}
-input,button{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:9px 11px}
-input[type=url]{flex:1;min-width:0}
-button{cursor:pointer}
-button.primary{background:var(--acc);color:var(--bg);border-color:var(--acc)}
-button:disabled{opacity:.5;cursor:wait}
-#status{min-height:1.4em;font-size:.9rem;color:var(--mut);margin:0 0 18px}
-.card{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:12px 16px;margin-bottom:10px;display:flex;gap:14px}
-.card img{width:80px;height:80px;object-fit:cover;border-radius:6px;flex:none}
-.body{min-width:0;flex:1}
-.date{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
-.card h2{font-size:1.1rem;margin:2px 0 4px;overflow-wrap:anywhere}
-.card h2 a{color:inherit}
-.loc{font-size:.9rem;color:var(--mut);margin:0 0 6px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.85rem}
-.actions button,.actions input{padding:3px 8px;font-size:.85rem}
-details{margin-top:28px;font-size:.9rem;color:var(--mut)}
-details label{display:block;margin:10px 0 2px}
-details input{width:100%}
-details p{margin:8px 0}
-.empty{color:var(--mut);text-align:center;padding:32px 0}
-@media(max-width:480px){.card img{display:none}form{flex-direction:column}}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 Georgia,'Times New Roman',serif}
+main{max-width:720px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:2rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 24px;font-family:system-ui,sans-serif;font-size:.9rem}
+.box,.event{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+input,textarea{font:inherit;font-family:system-ui,sans-serif;font-size:.95rem;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+.row input{flex:1;min-width:180px;width:auto}
+button{font-family:system-ui,sans-serif;font-size:.9rem;border:0;border-radius:6px;padding:8px 14px;background:var(--accent);color:#fff;cursor:pointer}
+button.ghost{background:none;color:var(--muted);border:1px solid var(--line)}
+label{display:block;font:600 .75rem system-ui,sans-serif;color:var(--muted);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+#msg{font:.85rem system-ui,sans-serif;color:var(--muted);margin-top:8px;min-height:1.2em}
+#form{display:none}
+.date{font:600 .8rem system-ui,sans-serif;color:var(--accent);text-transform:uppercase;letter-spacing:.05em}
+.event h3{margin:2px 0 2px;font-size:1.25rem}
+.event .venue{font:.85rem system-ui,sans-serif;color:var(--muted)}
+.event p{margin:8px 0;white-space:pre-wrap}
+.event a{color:var(--accent);font:.85rem system-ui,sans-serif}
+.actions{display:flex;gap:8px;margin-top:8px}
+.tools{margin-top:28px;display:flex;gap:8px;flex-wrap:wrap}
+.empty{color:var(--muted);text-align:center;padding:24px}
 </style>
 </head>
 <body>
 <main>
-<h1>events</h1>
-<p class="sub">Paste a link to an event. Saved and synced across your devices, latest first.</p>
-<form id="f">
-  <input type="url" id="u" placeholder="https://..." required>
-  <button class="primary" id="b">Add</button>
-</form>
-<p id="status"></p>
+<h1>Event Tracker</h1>
+<p class="sub">Paste an event link, check the details, save. Newest dates first.</p>
+
+<div class="box">
+  <div class="row">
+    <input id="url" type="url" placeholder="https://example.com/event-page">
+    <button id="fetchBtn">Fetch details</button>
+  </div>
+  <div id="msg"></div>
+  <div id="form">
+    <label>Title</label><input id="title">
+    <label>Date</label><input id="date" type="date">
+    <label>Venue / source</label><input id="venue">
+    <label>Summary</label><textarea id="summary" rows="3"></textarea>
+    <div class="actions"><button id="saveBtn">Save event</button><button class="ghost" id="cancelBtn">Cancel</button></div>
+  </div>
+</div>
+
 <div id="list"></div>
 
-<details id="set">
-  <summary>Sync settings</summary>
-  <label for="repo">Repo (owner/name)</label>
-  <input id="repo" value="ej-coombe/ej-coombe.github.io">
-  <label for="path">Data file</label>
-  <input id="path" value="events.json">
-  <label for="tok">GitHub token (needed to add / edit / delete; stays on this device)</label>
-  <input id="tok" type="password" placeholder="github_pat_...">
-  <p><button id="saveset">Save settings</button></p>
-  <p>Create the token at GitHub → Settings → Developer settings → Fine-grained tokens. Limit it to this one repo with <b>Contents: Read and write</b>. Enter it once on each device. The list is stored as a public file in your repo.</p>
-</details>
+<div class="tools">
+  <button class="ghost" id="exportBtn">Export JSON</button>
+  <button class="ghost" id="importBtn">Import JSON</button>
+  <input type="file" id="importFile" accept=".json" hidden>
+</div>
 </main>
+
 <script>
+const KEY='eventTracker.v1';
 const $=id=>document.getElementById(id);
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const CFG='eventTracker.cfg',CACHE='eventTracker.cache';
-const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
-
-let cfg=Object.assign({repo:'ej-coombe/ej-coombe.github.io',path:'events.json',tok:''},JSON.parse(ls.get(CFG)||'{}'));
-let events=JSON.parse(ls.get(CACHE)||'[]');
-function setStatus(t){$('status').textContent=t}
-function fillCfg(){$('repo').value=cfg.repo;$('path').value=cfg.path;$('tok').value=cfg.tok}
-$('saveset').onclick=()=>{cfg={repo:$('repo').value.trim(),path:$('path').value.trim(),tok:$('tok').value.trim()};ls.set(CFG,JSON.stringify(cfg));setStatus('Settings saved.');refresh()};
-
-// ---- GitHub-backed storage ----
-const api=()=>`https://api.github.com/repos/${cfg.repo}/contents/${cfg.path}`;
-const hdr=()=>{const h={Accept:'application/vnd.github+json'};if(cfg.tok)h.Authorization='Bearer '+cfg.tok;return h};
-const dec=b=>decodeURIComponent(escape(atob(b.replace(/\n/g,''))));
-const enc=s=>btoa(unescape(encodeURIComponent(s)));
-
-async function pull(){
-  const r=await fetch(api()+'?t='+Date.now(),{headers:hdr(),cache:'no-store'});
-  if(r.status===404)return{list:[],sha:undefined};
-  if(!r.ok)throw new Error('GitHub '+r.status);
-  const j=await r.json();
-  return{list:JSON.parse(dec(j.content)),sha:j.sha};
+let events=[];
+try{events=JSON.parse(localStorage.getItem(KEY)||'null')||[]}catch(e){}
+if(!events.length){ // seed with the sample link
+  events=[{id:'seed',url:'https://buttonfactory.ie/shows/2026/12/6/tr-phidn',title:'Show at The Button Factory (edit title)',date:'2026-12-06',venue:'The Button Factory, Temple Bar, Dublin',summary:'Sample entry. The site blocked automatic reading, so the date and venue come from the URL. Edit to add the act and details.'}];
 }
-async function push(list,sha){
-  const r=await fetch(api(),{method:'PUT',headers:{...hdr(),'Content-Type':'application/json'},
-    body:JSON.stringify({message:'Update events',content:enc(JSON.stringify(list,null,1)),sha})});
-  if(r.status===409||r.status===422)return'conflict';
-  if(!r.ok)throw new Error('GitHub '+r.status);
-  return'ok';
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(events))}catch(e){}};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let editing=null;
+
+function render(){
+  const sorted=[...events].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+  $('list').innerHTML=sorted.length?sorted.map(e=>{
+    const d=e.date?new Date(e.date+'T12:00').toLocaleDateString('en-IE',{weekday:'short',day:'numeric',month:'long',year:'numeric'}):'Date unknown';
+    return `<div class="event"><div class="date">${d}</div><h3>${esc(e.title)}</h3>
+    <div class="venue">${esc(e.venue)}</div><p>${esc(e.summary)}</p>
+    <a href="${esc(e.url)}" target="_blank" rel="noopener">Event page ↗</a>
+    <div class="actions"><button class="ghost" onclick="edit('${e.id}')">Edit</button><button class="ghost" onclick="del('${e.id}')">Delete</button></div></div>`}).join(''):'<div class="empty">No events yet.</div>';
 }
-// Apply a change on top of the latest remote copy, so devices never overwrite each other
-async function mutate(fn){
-  if(!cfg.tok){setStatus('Add a GitHub token in Sync settings to make changes.');$('set').open=true;return false}
-  for(let i=0;i<3;i++){
-    const{list,sha}=await pull();
-    const next=fn(list);
-    if(await push(next,sha)==='ok'){events=next;ls.set(CACHE,JSON.stringify(events));render();return true}
+function del(id){if(confirm('Delete this event?')){events=events.filter(e=>e.id!==id);save();render()}}
+function edit(id){const e=events.find(x=>x.id===id);editing=id;$('url').value=e.url;
+  ['title','date','venue','summary'].forEach(k=>$(k).value=e[k]||'');$('form').style.display='block';scrollTo({top:0,behavior:'smooth'})}
+
+function fromUrl(u){
+  const m=u.match(/(20\d\d)[\/-](\d{1,2})[\/-](\d{1,2})/);
+  return m?`${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`:'';
+}
+async function getHtml(u){
+  const proxies=[x=>'https://api.allorigins.win/raw?url='+encodeURIComponent(x),x=>'https://corsproxy.io/?'+encodeURIComponent(x)];
+  for(const p of proxies){
+    try{const r=await fetch(p(u));if(r.ok){const t=await r.text();if(t.length>200)return t}}catch(e){}
   }
-  throw new Error('Sync conflict, try again');
-}
-async function refresh(){
-  setStatus('Syncing…');
-  try{const{list}=await pull();events=list;ls.set(CACHE,JSON.stringify(events));render();setStatus(cfg.tok?'Synced.':'Synced (read-only, no token on this device).')}
-  catch(e){setStatus('Sync failed: '+e.message+'. Showing last saved copy.')}
-}
-
-// ---- Page details (title/date/image) via public CORS proxies ----
-const PROXIES=[u=>'https://corsproxy.io/?'+encodeURIComponent(u),u=>'https://api.allorigins.win/raw?url='+encodeURIComponent(u)];
-async function getHTML(url){
-  for(const p of PROXIES){try{const r=await fetch(p(url));if(r.ok){const t=await r.text();if(t.length>50)return t}}catch(e){}}
-  throw new Error('fetch failed');
-}
-function findEventLD(doc){
-  const walk=n=>{
-    if(Array.isArray(n)){for(const x of n){const r=walk(x);if(r)return r}return null}
-    if(n&&typeof n==='object'){if(/Event/.test([].concat(n['@type']||[]).join(' ')))return n;return walk(n['@graph']||null)}
-    return null};
-  for(const s of doc.querySelectorAll('script[type="application/ld+json"]')){try{const r=walk(JSON.parse(s.textContent));if(r)return r}catch(e){}}
   return null;
 }
-const trim=(s,n)=>{s=(s||'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n-1).trimEnd()+'…':s};
-function parse(html,url){
-  const doc=new DOMParser().parseFromString(html,'text/html');
-  const meta=k=>{const e=doc.querySelector(`meta[property="${k}"],meta[name="${k}"]`);return e?e.getAttribute('content'):''};
-  const ld=findEventLD(doc)||{};
-  let loc=ld.location;
-  if(loc&&typeof loc==='object'){loc=[].concat(loc)[0];loc=[loc.name,loc.address&&(typeof loc.address==='string'?loc.address:[loc.address.streetAddress,loc.address.addressLocality].filter(Boolean).join(', '))].filter(Boolean).join(' – ')}
-  const t=doc.querySelector('time[datetime]');
-  const date=ld.startDate||meta('event:start_time')||meta('og:event:start_time')||(t&&t.getAttribute('datetime'))||'';
-  let img=ld.image;if(Array.isArray(img))img=img[0];if(img&&typeof img==='object')img=img.url;
-  img=img||meta('og:image')||'';
-  try{if(img)img=new URL(img,url).href}catch(e){}
-  return{title:trim(ld.name||meta('og:title')||doc.title,120)||url,location:trim(typeof loc==='string'?loc:'',120),image:img,
-    date:isNaN(Date.parse(date))?'':new Date(date).toISOString().slice(0,10)};
-}
-
-// ---- UI ----
-const sortKey=e=>e.date||e.added.slice(0,10);
-const fmt=d=>{try{return new Date(d).toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'})}catch(e){return d}};
-function render(){
-  if(!events.length){$('list').innerHTML='<p class="empty">No events yet. Paste a link above.</p>';return}
-  $('list').innerHTML=events.slice().sort((a,b)=>sortKey(b).localeCompare(sortKey(a))).map(e=>`
-  <div class="card" data-id="${esc(e.id)}">
-    ${e.image?`<img src="${esc(e.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:''}
-    <div class="body">
-      <div class="date">${e.date?fmt(e.date):'No event date · added '+fmt(e.added)}</div>
-      <h2><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></h2>
-      ${e.location?`<p class="loc">📍 ${esc(e.location)}</p>`:''}
-      <div class="actions"><label>Date <input type="date" value="${esc(e.date)}" data-act="date"></label><button data-act="del">Delete</button></div>
-    </div>
-  </div>`).join('');
-}
-const guard=async fn=>{try{await fn()}catch(e){setStatus('Error: '+e.message)}};
-$('list').addEventListener('change',ev=>{
-  if(ev.target.dataset.act!=='date')return;
-  const id=ev.target.closest('.card').dataset.id,v=ev.target.value;
-  guard(async()=>{if(await mutate(l=>l.map(x=>x.id===id?{...x,date:v}:x)))setStatus('Saved.');else render()});
-});
-$('list').addEventListener('click',ev=>{
-  if(ev.target.dataset.act!=='del')return;
-  const id=ev.target.closest('.card').dataset.id;
-  if(confirm('Delete this event?'))guard(async()=>{if(await mutate(l=>l.filter(x=>x.id!==id)))setStatus('Deleted.')});
-});
-$('f').addEventListener('submit',ev=>{
-  ev.preventDefault();
-  const url=$('u').value.trim();
-  if(events.some(e=>e.url===url)){setStatus('Already in your list.');return}
-  $('b').disabled=true;
-  guard(async()=>{
-    try{
-      if(!cfg.tok){await mutate(l=>l);return}
-      setStatus('Fetching…');
-      let info;try{info=parse(await getHTML(url),url)}catch(e){info={title:url,location:'',image:'',date:''}}
-      const item={id:'e'+Date.now(),url,added:new Date().toISOString(),...info};
-      if(await mutate(l=>l.some(x=>x.url===url)?l:[...l,item])){$('u').value='';setStatus(info.date?'Added.':'Added. No date found, set it on the card.')}
-    }finally{$('b').disabled=false}
-  });
-});
-fillCfg();render();refresh();
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
+$('fetchBtn').onclick=async()=>{
+  const u=$('url').value.trim();
+  if(!/^https?:\/\//.test(u)){$('msg').textContent='Please enter a full URL starting with http(s)://';return}
+  $('msg').textContent='Fetching…';editing=null;
+  const host=new URL(u).hostname.replace(/^www\./,'');
+  let t='',desc='',date=fromUrl(u),venue=host,site='';
+  const html=await getHtml(u);
+  if(html){
+    const doc=new DOMParser().parseFromString(html,'text/html');
+    const meta=n=>(doc.querySelector(`meta[property="${n}"],meta[name="${n}"]`)||{}).content||'';
+    t=meta('og:title')||doc.title||'';
+    desc=meta('og:description')||meta('description');
+    site=meta('og:site_name');
+    doc.querySelectorAll('script[type="application/ld+json"]').forEach(s=>{
+      try{const j=JSON.parse(s.textContent);(Array.isArray(j)?j:[j]).forEach(o=>{
+        if(o&&o.startDate&&!date)date=String(o.startDate).slice(0,10);
+        if(o&&o.location&&o.location.name)venue=o.location.name;
+      })}catch(e){}
+    });
+    if(site&&venue===host)venue=site;
+    $('msg').textContent='Details fetched. Check and edit anything before saving.';
+  }else $('msg').textContent='Could not read that page automatically. Date was guessed from the URL where possible; please fill in the rest.';
+  $('title').value=t.trim();$('date').value=date;$('venue').value=venue;$('summary').value=desc.trim();
+  $('form').style.display='block';
+};
+$('cancelBtn').onclick=()=>{$('form').style.display='none';$('msg').textContent='';editing=null};
+$('saveBtn').onclick=()=>{
+  const rec={url:$('url').value.trim(),title:$('title').value.trim()||'Untitled event',date:$('date').value,venue:$('venue').value.trim(),summary:$('summary').value.trim()};
+  if(editing)events=events.map(e=>e.id===editing?{...e,...rec}:e);
+  else events.push({id:String(Date.now()),...rec});
+  save();render();$('form').style.display='none';$('url').value='';$('msg').textContent='Saved.';editing=null;
+};
+$('exportBtn').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(events,null,2)],{type:'application/json'}));a.download='events.json';a.click()};
+$('importBtn').onclick=()=>$('importFile').click();
+$('importFile').onchange=async e=>{try{const d=JSON.parse(await e.target.files[0].text());if(Array.isArray(d)){events=d;save();render()}}catch(x){alert('Invalid file')}};
+render();
 </script>
 </body>
 </html>
